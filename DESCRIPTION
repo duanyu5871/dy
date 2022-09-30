@@ -9,6 +9,7 @@ Description: Data clean
     Auto analysis and table
 License: What license is it under?
 Encoding: UTF-8
+Imports: stringr
 LazyData: true
 RoxygenNote: 7.2.1
 Depends: 
