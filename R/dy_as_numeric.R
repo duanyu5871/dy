@@ -1,5 +1,7 @@
 #' @importFrom stringr str_trim
-
+#' @importFrom stringr str_length
+#' @importFrom stringr str_extract
+#' @importFrom stringr str_split_fixed
 #' @export
 dy_as_numeric<-function(x,allowN=1,allowBeginZero=T,...) {
   UseMethod("dy_as_numeric")
