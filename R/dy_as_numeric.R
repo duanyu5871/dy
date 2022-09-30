@@ -30,6 +30,18 @@ dy_as_numeric.matrix<-function(x,allowN=1,allowBeginZero=T,...){
 }
 
 #' @export
+dy_as_numeric.double<-function(x,allowN=1,allowBeginZero=T,...){
+  print("你想干嘛？")
+  return(x)
+}
+
+#' @export
+dy_as_numeric.integer<-function(x,allowN=1,allowBeginZero=T,...){
+  print("你想干嘛？")
+  return(x)
+}
+
+#' @export
 dy_as_numeric.data.frame<-function(x,allowN=1,allowBeginZero=T,...){
   dy_as_numeric.default(x,...)
 }
@@ -64,7 +76,6 @@ dy_as_numeric.default<-function(x,allowN=1,allowBeginZero=T,...){
   return(x)
 }
 
-#' @export
 dy_string_to_numeric<-function(x,allowN=1,varIndex=NULL,varName=NULL,allowBeginZero=T){
   ### 字符串转数值，允许出现少量同质的前后缀笔误
   x<-str_trim(x)  ### 去除前后空格
