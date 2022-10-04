@@ -9,6 +9,8 @@ dy_as_numeric<-function(x,allowN=1,allowBeginZero=T,...) {
 
 #' @export
 dy_as_numeric.character<-function(x,allowN=1,allowBeginZero=T,...) {
+  old_opt<-getOption("warn")
+  options(warn =-1)
   x<-str_trim(x)
   n_before<-sum(is.na(x))
   n_after<-sum(is.na(as.numeric(x)))
@@ -19,14 +21,15 @@ dy_as_numeric.character<-function(x,allowN=1,allowBeginZero=T,...) {
       print(paste("已转换"))
     }
   } else {
-    x<-dy_string_to_numeric(x,allowN,...)  ### 保守方案，仅允许出现最多一种前缀或后缀
+    x<-dy_string_to_numeric(x,allowN=allowN,allowBeginZero=allowBeginZero,...)  ### 保守方案，仅允许出现最多一种前缀或后缀
   }
+  options(warn=old_opt)
   return(x)
 }
 
 #' @export
 dy_as_numeric.matrix<-function(x,allowN=1,allowBeginZero=T,...){
-  dy_as_numeric.default(x,...)
+  dy_as_numeric.default(x,allowN=allowN,allowBeginZero=allowBeginZero,...)
 }
 
 #' @export
@@ -43,7 +46,7 @@ dy_as_numeric.integer<-function(x,allowN=1,allowBeginZero=T,...){
 
 #' @export
 dy_as_numeric.data.frame<-function(x,allowN=1,allowBeginZero=T,...){
-  dy_as_numeric.default(x,...)
+  dy_as_numeric.default(x,allowN=allowN,allowBeginZero=allowBeginZero,...)
 }
 
 #' @export
@@ -69,7 +72,7 @@ dy_as_numeric.default<-function(x,allowN=1,allowBeginZero=T,...){
         print(paste("已转换: i=",i,",",names(x)[i]))
       }
     } else {
-      x[,i]<-dy_string_to_numeric(x[,i],allowN,i,names(x)[i],...)  ### 保守方案，仅允许出现最多一种前缀或后缀
+      x[,i]<-dy_string_to_numeric(x[,i],allowN=allowN,varIndex=i,varName=names(x)[i],allowBeginZero=allowBeginZero,...)  ### 保守方案，仅允许出现最多一种前缀或后缀
     }
   }
   options(warn=old_opt)

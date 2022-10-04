@@ -19,5 +19,13 @@ Data transformation
 
 \examples{
 # bad_data
-dy_as_numeric(bad_data)
+print(bad_data)
+
+# transformed bad_data
+new_data<-dy_as_numeric(bad_data)
+print(new_data)
+
+# a aggressive parameter
+new_data<-dy_as_numeric(bad_data,allowN=2)
+print(new_data)
 }
